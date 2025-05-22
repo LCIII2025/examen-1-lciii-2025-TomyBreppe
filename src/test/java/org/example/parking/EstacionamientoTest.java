@@ -4,7 +4,10 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static junit.framework.Assert.*;
+import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 public class EstacionamientoTest {
 
@@ -39,16 +42,23 @@ public class EstacionamientoTest {
         Vehiculo auto = new Vehiculo("AG333BE", "Peugeot 208", Vehiculo.Tipo.AUTO);
         Ticket ticket = new Ticket(cliente, auto);
 
-        ticket.setHoraSalida(ticket.getHoraEntrada().plusMinutes(15));
+        ticket.setHoraSalida(ticket.getHoraEntrada().plusMinutes(45));
         double precioAuto = ticket.calcularPrecio();
         assertEquals(100, precioAuto, 0.01);
 
         Vehiculo suv = new Vehiculo("AF546GF", "Peugeot 2008", Vehiculo.Tipo.SUV);
         Ticket ticket2 = new Ticket(cliente, suv);
+
+        ticket2.setHoraSalida(ticket2.getHoraEntrada().plusMinutes(80));
         double precioSuv = ticket2.calcularPrecio();
         assertEquals(130 * 2, precioSuv, 0.01);
 
-        
+        Vehiculo pickUp = new Vehiculo("AE978TY", "BMW X6", Vehiculo.Tipo.PICKUP);
+        Ticket ticket3 = new Ticket(cliente, pickUp);
+
+        ticket3.setHoraSalida(ticket3.getHoraEntrada().plusMinutes(130));
+        double precioPickUp = ticket3.calcularPrecio();
+        assertEquals(180 * 3, precioPickUp, 0.01);
     }
 
 }
